@@ -79,3 +79,173 @@
 
 #math 모듈
 # 최대공약수, 공배수 모두 가능 gcd,lcm
+
+
+# 재귀함수 recursive function
+# def recursive_function(i):
+#     if i==100:
+#         return
+#     print(i,"번째 재귀함수에서",i+1,"번째 재귀함수를 호출합니다")
+#     recursive_function(i+1)
+#     print(i,"번째 재귀함수를 종류합니다")
+
+# recursive_function(40)
+
+
+
+
+# 재귀함수 예시 fectorial
+# def fectorial(n):
+#     if n<=1:
+#         return 1
+#     return n*fectorial(n-1)
+# print(fectorial(5))        
+
+
+# 재귀함수 예시 최대공약수(뉴클리드 호제법)
+# 두 자연수 a,b에 대하여 (a>b) a를 b로 나눈 나머지를 r이라고 하면
+# 이때 a와 b의 최대공약수는 b와 r의 최대공약수와 같다.
+# def gcd(a,b):
+#     if a%b==0:
+#         return b
+#     else:
+#         return gcd(b,a%b)    
+
+
+
+
+
+
+#DFS(Depth-First-Search) 깊이 우선 탐색
+#끝까지 다 탐색하는거--> stack or 재귀함수  재귀함수를 사용하면 backtracking에 유리하다.
+
+# graph=[[],[2,3,8],[1,7],[1,4,5],[3,5],[3,4],[7],[6,8],[1,7]]
+# visited=[False]*9
+
+# def dfs(graph,v,visited):
+#     visited[v]=True
+#     print(v,end=' ')
+
+#     for i in graph[v]:
+#         if not visited[i]:
+#             dfs(graph,i,visited)
+# print(dfs(graph,1,visited))            
+    
+          
+
+
+
+
+##BFS 넓이 우선 탐색
+# graph=[[],[2,3,8],[1,7],[1,4,5],[3,5],[3,4],[7],[6,8],[1,7]]
+# visited=[False]*9
+# from collections import deque   
+# def bfs(graph,start,visited):
+
+#     queue=deque([start])
+#     visited[start]=True
+
+#     while queue:
+#         v=queue.popleft()
+#         print(v,end=' ')
+
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 queue.append(i)
+#                 visited[i]=True
+
+# print(bfs(graph,1,visited))      
+
+
+
+
+# 선택 정렬  # n+(n-1)+(n-2)+....2 --> 시간복잡도 n*2
+# array=[7,5,9,0,3,1,6,2,4,8]
+# for i in range(len(array)):
+#     mini=i
+#     for j in range(i+1,len(array)):
+#         if array[mini]>array[j]:
+#             mini=j
+#     array[i],array[mini]=array[mini],array[i]
+
+# print(array)
+
+
+
+# 삽입정렬 
+# 시간복잡도가  n*2   but 이미 다 정렬되어있다면 n으로 시간복잡도는 줄어든다
+# array=[7,5,9,0,3,1,6,2,4,8]
+
+# for i in range(1,len(array)):
+#     for j in range(i,0,-1):
+#         if array[j]<array[j-1]:
+#             array[j],array[j-1]=array[j-1],array[j]    
+#         else:
+#             break    
+# print(array)        
+
+
+
+
+##### quick sort !!!!
+#시간 복잡도가 빠르다 NlogN  최악의 경우 N*2 까지 나온다.
+
+# array=[5,7,9,0,3,1,6,2,4,8]
+# def quick(array,start,end):
+#     if start >= end:      # 정렬하려는 원소가 1개 일때 종료
+#         return
+#     pivot=start       # 첫번째 기준이 되는 값을 설정
+#     left=start+1      # pivot의 바로 오른쪽 인덱스를 left로 설정 
+#     right=end         # 가장 오른쪽 값을 rigjt로 설정
+#     while left <= right:          # 겹쳐지지 않을 때 까지 반복 
+#         while left <=end and array[left]<=array[pivot]:      # left에서 부터 pivot보다 큰 수를 찾고 
+#             left+=1
+#         while right > start and array[right]>=array[pivot]:     # right 부터 pivot보다 작은 수를 찾고
+#             right-=1
+#         if left > right:     # 겹쳐질때  
+#             array[right],array[pivot]=array[pivot],array[right]   # pivot 값과 rigjt값을 서로 바꾼다.
+#         else:
+#             array[right],array[left]=array[left],array[right]   # left 값과 right 값을 서로 바꿔준다.
+#         quick(array,start,right-1)          # pivot을 기준으로 왼쪽 부분과 오른쪽 부분을 따로 따로 다시 QUICK SOLT 해준다.
+#         quick(array,right+1,end)
+# quick(array,0,len(array)-1)
+# print(array)      
+
+
+
+
+####3 퀵정렬 파이썬으로 간단하게  --> 리스트 슬라이싱, 컴프리헨션
+
+# array=[5,7,9,0,3,1,6,2,4,8]
+
+# def quick_sort(array):
+#     if len(array)<=1:     #리스트가 하나의 원소만 가지고 있다면 종료 
+#         return array   
+#     pivot=array[0]        # pivot값을 리스트의 첫번째 값으로 설정
+#     tail=array[1:]        # pivot값을 제외한 나머지를 리스트 슬라이싱
+
+#     left_side=[x for x in tail if x <=pivot]     #pivot 기준 작은 수들을 왼쪽으로 정렬
+#     right_side=[x for x in tail if x > pivot]    #pivot 기준 큰 수들을 오른쪽으로 정렬
+
+#     return   quick_sort(left_side)+[pivot]+quick_sort(right_side)   # 재귀를 이용하여  pivot을 제외한 왼쪽과 오른쪽을 각각 따로 정렬한다.
+
+# print(quick_sort(array))      
+
+
+
+
+
+#계수 정렬 
+# 특정 조건이 부합할때만 매우 빠르게 동작하는 알고리즘 최악의 경우/// 데이터 개수가 N,데이터(양수) 중 최대값 K O(K+K)
+# 데이터의 크기 범위가 제한되어 정수 형태로 표현 할 수 있을때 사용가능
+
+# array=[7,5,9,0,3,1,6,2,9,1,4,8,0,5,2]   # 모든 원소의 값이 0보다 크다고 가정
+
+# count=[0]*(max(array)+1)     # 모든 범위를 포함하는 리스트 선언(모두 0 으로 초기화)
+
+# for i in range(len(array)):  # 각 데이터에 해당하는 인덱스 값 증가
+#     count[array[i]]+=1
+
+# for j in range(len(count)):
+#     for k in range(count[k]): # count 값을 확인 후 출력
+#         print(k,end=' ')
