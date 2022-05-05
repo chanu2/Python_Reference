@@ -249,3 +249,35 @@
 # for j in range(len(count)):
 #     for k in range(count[k]): # count 값을 확인 후 출력
 #         print(k,end=' ')
+
+
+
+
+
+## 이진탐색 알고리즘 
+# 순차 탐색 --> 리스트에서 특정한 데이터를 찾기위해 앞에서 부터 데이터를 하나씩 확인하는 방법
+# 이진 탐색 --> #정렬 되있는 리스트에서 탐색 범위를 절반씩 좁혀가며 데이터를 탐색하는 방법  logN 보장
+# 이진 탐색(시작점,중간점,끝 인덱스필요)
+
+
+# 재귀함수를 이용한 이진탐색 코드
+# import sys
+# def binary_search(array,target,start,end):    # 리스트,찾을 값, 시작점, 끝 점
+#     if start > end:               # None 리턴 조건
+#         return None
+#     mid=(end+start)//2           #중간값의 인덱스를 구하는 코드
+#     if array[mid]==target:       # 중간값이 찾는 값일 떄 인덱스를 반환
+#         return mid                
+#     elif array[mid]>target:      # 중간값이 찾는 값 보다 클 때 중간값 인덱스 -1 이후로는 볼 필요가 없다
+#         return binary_search(array,target,start,mid-1)    
+#     else:
+#         return binary_search(array,target,mid+1,end) #중간값이 찾는 값 보다 작을 때 중간값 인덱스 +1 이 전으로는 볼 필요가 없다.
+
+# n,target=map(int,sys.stdin.readline().split())
+# array=list(map(int,sys.stdin.readline().split()))  
+
+# result=binary_search(array,target,0,n-1)
+# if result==None:     #원소가 존재하지 않을 때
+#     print("원소가 없다")
+# else:
+#     print(result+1)
