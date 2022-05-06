@@ -234,6 +234,30 @@
 
 
 
+# 반복문으로 구현한 이진탐색 코드
+# import sys
+# def binary_search(array,target,start,end):
+#     while start<= end:
+#         mid = (start+end)//2
+#         if array[mid]==target:
+#             return mid
+#         elif array[mid] > target:
+#             end=mid-1
+#         else:
+#             start=mid+1
+#     return None
+
+# n,target =list(map(int,sys.stdin.readline().split())) 
+# array=list(map(int,sys.stdin.readline().split())) 
+# result =binary_search(array,target,0,n-1)
+# if result ==None:
+#     print("원소가 없다")
+# else:
+#     print(result+1)     
+
+
+
+
 
 #계수 정렬 
 # 특정 조건이 부합할때만 매우 빠르게 동작하는 알고리즘 최악의 경우/// 데이터 개수가 N,데이터(양수) 중 최대값 K O(K+K)
