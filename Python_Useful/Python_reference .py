@@ -20,6 +20,8 @@
 
 
 # 딕션어리 
+# 딕션어리 선언시 간단하게 
+# a=[1,2,3,4,5,6,7,8,9,10]  -->   dic={a[i]:i for i in range(10)} 
 
 
 #집합
@@ -305,3 +307,86 @@
 #     print("원소가 없다")
 # else:
 #     print(result+1)
+
+
+
+
+# # 반복문으로 구현한 이진탐색 코드
+# import sys
+# def binary_search(array,target,start,end):
+#     while start<= end:
+#         mid = (start+end)//2
+#         if array[mid]==target:
+#             return mid
+#         elif array[mid] > target:
+#             end=mid-1
+#         else:
+#             start=mid+1
+#     return None
+
+# n,target =list(map(int,sys.stdin.readline().split())) 
+# array=list(map(int,sys.stdin.readline().split())) 
+# result =binary_search(array,target,0,n-1)
+# if result ==None:
+#     print("원소가 없다")
+# else:
+#     print(result+1)                      
+
+
+
+
+# 파이썬 이진 탐색 라이브러리
+# bisect_left(a,x) --> 정렬된 순서를 유지하면서 배열 a에 x를 삽입할 가장 왼쪽 인덱스를 반환
+# bisect_right(a,x) --> 정렬된 순서를 유지하면서 배열 a에 x를 삽입할 가장 오른쪽 인덱스를 반환
+
+# 값이 특정 범위에 속하는 데이터 개수 구하기
+# from bisect import bisect_left,bisect_right
+# def cuont_range(a,left_vlaue,right_vlaue):
+#     return  bisect_right(a,right_vlaue)-bisect_left(a,left_vlaue)
+
+# a=[1,2,3,3,3,3,4,4,8,9]
+# print(cuont_range(a,4,4))
+
+
+
+
+## 파라메트릭 서치## 이진탐색 문제 활용은 파라메트릭 서치가 많이 나온다
+#최적화 문제(어떠한 함수의 값을 가능한 낮추거나 함수의 값을 높이는 문제들을 의미한다)를 결정 문제('예',혹은 '아니오')로 바꾸어 해결하는 기법
+
+
+# 떡볶이 문제 
+# import sys
+# n,m=map(int,sys.stdin.readline().split())
+# array=list(map(int,sys.stdin.readline().split()))
+
+# start=0
+# end=max(array)
+# result=0
+
+# while start<=end:
+#     total=0
+#     mid=(end+start//2)
+#     for i in array:
+#         if i>mid:
+#             total+=i-mid
+#     if total>=m:
+#         start=mid+1
+#         result=mid
+#     else:
+#         end=mid-1
+# print(result)
+
+
+# 요소개수 확인하기 이진탐색으로 nlogn
+# import sys
+# from bisect import bisect_left,bisect_right
+# n,m=map(int,sys.stdin.readline().split())
+# array=list(map(int,sys.stdin.readline().split()))
+
+# def count_component(array,m):
+#     result=bisect_right(array,m)-bisect_left(array,m)
+#     if result==0:
+#         return -1
+#     else:
+#         return result    
+# print(count_component(array,m))
