@@ -390,3 +390,70 @@
 #     else:
 #         return result    
 # print(count_component(array,m))
+
+
+
+
+
+# 부족하다고 생각하는 dfs 상하좌우 확인하는 
+# import sys
+
+# # nx=[1,-1,0,0]
+# # ny=[0,0,1,-1]
+
+# def dfs(x,y):
+#     if x<=-1 or x>=n or y<=-1 or y>=m:
+#         return False
+#     if graph[x][y]==0:
+#         graph[x][y]=1
+
+#         dfs(x-1,y)
+#         dfs(x+1,y)
+#         dfs(x,y-1)
+#         dfs(x,y+1)
+
+#         return True
+#     return False
+
+
+# n,m=map(int,sys.stdin.readline().split())
+# graph=[list(map(int,sys.stdin.readline().strip()))for i in range(n)]
+# result=0
+# for i in range(n):
+#     for j in range(m):
+#         if dfs(i,j)==True:
+#             result+=1
+# print(result)            
+
+
+# bfs 상하좌우를 탐색하는 알고리즘 코드
+# import sys  
+# from collections import deque
+
+# dx=[1,-1,0,0]     # 상하좌우를 확인 하기위해 리스트 두개를 만들어 준다
+# dy=[0,0,1,-1]
+# def bfs(x,y):
+#     queue=deque([])
+#     queue.append([x,y])
+#     graph[x][y]=1
+
+#     while queue:
+#         x,y=queue.popleft()
+#         for i in range(4):
+#             xx=x+dx[i]
+#             yy=y+dy[i]
+#             if 0<= xx < n and 0<= yy <m:
+#                 if graph[xx][yy]==0:
+#                     graph[xx][yy]=1
+#                     queue.append([xx,yy])
+
+# n,m=map(int,sys.stdin.readline().split())
+# graph=[list(map(int,sys.stdin.readline().strip()))for i in range(n)]
+# result=0
+# for i in range(n):
+#     for j in range(m):
+#         if graph[i][j]==0:
+#             bfs(i,j)
+#             result+=1
+            
+# print(result)   
