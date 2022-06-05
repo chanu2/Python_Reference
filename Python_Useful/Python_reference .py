@@ -161,76 +161,6 @@
 
 
 
-# 부족하다고 생각하는 dfs 상하좌우 확인하는 
-# import sys
-
-# # nx=[1,-1,0,0]
-# # ny=[0,0,1,-1]
-
-# def dfs(x,y):
-#     if x<=-1 or x>=n or y<=-1 or y>=m:
-#         return False
-#     if graph[x][y]==0:
-#         graph[x][y]=1
-
-#         dfs(x-1,y)
-#         dfs(x+1,y)
-#         dfs(x,y-1)
-#         dfs(x,y+1)
-
-#         return True
-#     return False
-
-
-# n,m=map(int,sys.stdin.readline().split())
-# graph=[list(map(int,sys.stdin.readline().strip()))for i in range(n)]
-# result=0
-# for i in range(n):
-#     for j in range(m):
-#         if dfs(i,j)==True:
-#             result+=1
-# print(result)            
-
-
-# bfs 상하좌우를 탐색하는 알고리즘 코드
-# import sys  
-# from collections import deque
-
-# dx=[1,-1,0,0]     # 상하좌우를 확인 하기위해 리스트 두개를 만들어 준다
-# dy=[0,0,1,-1]
-# def bfs(x,y):
-#     queue=deque([])
-#     queue.append([x,y])
-#     graph[x][y]=1
-
-#     while queue:
-#         x,y=queue.popleft()
-#         for i in range(4):
-#             xx=x+dx[i]
-#             yy=y+dy[i]
-#             if 0<= xx < n and 0<= yy <m:
-#                 if graph[xx][yy]==0:
-#                     graph[xx][yy]=1
-#                     queue.append([xx,yy])
-
-# n,m=map(int,sys.stdin.readline().split())
-# graph=[list(map(int,sys.stdin.readline().strip()))for i in range(n)]
-# result=0
-# for i in range(n):
-#     for j in range(m):
-#         if graph[i][j]==0:
-#             bfs(i,j)
-#             result+=1
-            
-# print(result)  
-
-
-
-
-
-
-
-
 # 선택 정렬  # n+(n-1)+(n-2)+....2 --> 시간복잡도 n*2
 # array=[7,5,9,0,3,1,6,2,4,8]
 # for i in range(len(array)):
@@ -261,6 +191,9 @@
 
 ##### quick sort !!!!
 #시간 복잡도가 빠르다 NlogN  최악의 경우 N*2 까지 나온다.
+## 왼쪽에서는 pivot보다 큰 값들을 고르고 오른쪽에서는 작은 데이터를 고르고
+## 그 둘의 위치를 바꿔준다 
+## 엇갈리게 되면 작은데이터와 pivot값의 위치를 바꿔준다
 
 # array=[5,7,9,0,3,1,6,2,4,8]
 # def quick(array,start,end):
@@ -306,30 +239,6 @@
 
 
 
-# 반복문으로 구현한 이진탐색 코드
-# import sys
-# def binary_search(array,target,start,end):
-#     while start<= end:
-#         mid = (start+end)//2
-#         if array[mid]==target:
-#             return mid
-#         elif array[mid] > target:
-#             end=mid-1
-#         else:
-#             start=mid+1
-#     return None
-
-# n,target =list(map(int,sys.stdin.readline().split())) 
-# array=list(map(int,sys.stdin.readline().split())) 
-# result =binary_search(array,target,0,n-1)
-# if result ==None:
-#     print("원소가 없다")
-# else:
-#     print(result+1)     
-
-
-
-
 
 #계수 정렬 
 # 특정 조건이 부합할때만 매우 빠르게 동작하는 알고리즘 최악의 경우/// 데이터 개수가 N,데이터(양수) 중 최대값 K O(K+K)
@@ -345,7 +254,6 @@
 # for j in range(len(count)):
 #     for k in range(count[k]): # count 값을 확인 후 출력
 #         print(k,end=' ')
-
 
 
 
@@ -380,11 +288,10 @@
 
 
 
-
 # # 반복문으로 구현한 이진탐색 코드
 # import sys
 # def binary_search(array,target,start,end):
-#     while start<= end:
+#     while start<=end:
 #         mid = (start+end)//2
 #         if array[mid]==target:
 #             return mid
@@ -459,10 +366,93 @@
 #         return -1
 #     else:
 #         return result    
-# print(count_component(array,m))
+# print(count_component(array,m))    
 
 
 
 
 
+### Heap ###
 
+#   ADT --> priority queue(우선 순위가있는 추상화된 데이터 탑입)  ex) 가장 큰수를 먼저 빼주는 우선순위 큐라 가정  a=[3,9,5,2]  ---> 9,5,3,2 순서로 빠진다
+#  그렇지만 추상적인 데이터 이므로 컴퓨터에서 실제로 동작하는 데이터 구조로 구현해야 한다. 그것이 바로 heap!!!
+
+
+
+
+
+# 다이나믹 프로그래밍#
+
+
+#top down 방식과 bottom up 방식으로 나눈다
+# 하향식 top down -->메모이제이션(한번 계산한 결과를 메모리 공간에 메모하는 기법) // 캐쉬를 사용했다.
+
+#피보나치 수열 하향식
+
+# d=[0]*100
+
+# def fibo(x):
+#     if x==0 or x==1:   #종료 조건
+#         return 1
+#     if d[x]!=0:
+#         return d[x]
+
+#     d[x]=fibo(x-1)+fibo(x-2)
+#     return d[x]        
+# print(fibo(99 ))
+
+
+
+#피보나치 수열 상향식
+# d=[0]*100
+# d[1]=1
+# d[2]=1
+
+# n=99
+# for i in range(3,n+1):
+#     d[i]=d[i-1]+d[i-2]
+# print(d[n])    
+
+
+
+# 다이나믹 프로그램과 vs 분할정복 
+# 차이점은 부분 문제의 중복
+# 퀵정렬 예를 들면 --> 분할 이후에 해당 피벗을 다시 처리하는 부분은 호출되지 않는다. 
+
+# 다이나믹 프로그래밍 문제 접근법
+# 1, 그리디,구현,완전탐색으로 풀 수 있는지 확인 떠오르지 않는다면 다이나믹 프로그래밍 고려
+# 기본적인 다이나믹 프로그래밍이 나오는 경우가 많다.. 너무나 어려울 수 있기 때문에
+
+
+#개미 문제
+# import sys
+# n=int(sys.stdin.readline())
+# warehouse=list(map(int,sys.stdin.readline().split()))
+# dp=[0]*100
+
+# dp[0]=warehouse[0]
+# dp[1]=max(warehouse[0],warehouse[1])
+
+# for i in range(2,n):
+#     dp[i]=max(dp[n-1],dp[n-2]+warehouse[i])
+
+# print(dp[n-1])    
+
+
+
+# 1로 만들기  
+
+# import sys
+# n=sys.stdin.readline().rstrip()
+# dp=[0]*30001    # 미리 만들기
+
+# for i in range(2,n+1):
+#     dp[i]=(dp[i-1]+1)    # 1을 뺏을 때 값을 dp에 저장
+#     if i%2==0:
+#         dp[i]=min(dp[i],dp[i//2]+1)   # 최소값을 저장    
+#     if i%3==0:
+#         dp[i]=min(dp[i],dp[i//3]+1)
+#     if i%2==0:
+#         dp[i]=min(dp[i],dp[i//5]+1)
+
+# print(dp[n])            
